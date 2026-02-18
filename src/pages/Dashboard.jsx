@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/dashboard/Navbar';
 import ActionBar from '../components/dashboard/ActionBar';
 import MissionCard from '../components/dashboard/MissionCard';
 import { missions } from '../data/mockData';
@@ -30,8 +29,7 @@ export default function Dashboard() {
   const recentMissions = [...missions].sort((a, b) => new Date(b.dateDebut) - new Date(a.dateDebut)).slice(0, 5);
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC]">
-      <Navbar />
+    <>
       <ActionBar onNewMission={handleNewMission} />
 
       <main className="max-w-[1440px] mx-auto px-8 py-6">
@@ -67,7 +65,6 @@ export default function Dashboard() {
           />
         </div>
       </main>
-    </div>
+    </>
   );
 }
-

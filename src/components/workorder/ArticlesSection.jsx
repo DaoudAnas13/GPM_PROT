@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Card from '../ui/Card';
 import Button from '../ui/Button';
-import { Plus, Trash2 } from 'lucide-react';
+import { Plus, Trash2, Lock } from 'lucide-react';
 import LookupModal from './LookupModal';
 import { articles as mockArticles } from '../../data/mockData';
 
@@ -29,6 +29,18 @@ export default function ArticlesSection({ stage, articles, onAdd, onRemove, onUp
 
   return (
     <Card className="relative overflow-hidden min-h-[300px]">
+        {/* Overlay for Stage 1 (Locked) */}
+        {isLocked && (
+            <div className="absolute inset-0 z-10 bg-white/60 backdrop-blur-[1px] flex flex-col items-center justify-center text-center p-6 border border-gray-100 rounded-xl">
+                <div className="bg-white p-3 rounded-full shadow-sm mb-3">
+                    <Lock className="w-6 h-6 text-slate-400" />
+                </div>
+                <p className="text-sm font-medium text-slate-600">
+                    Soumettez le formulaire pour ajouter des articles.
+                </p>
+            </div>
+        )}
+
         <div className="flex items-center justify-between mb-6">
             <h3 className="text-lg font-semibold text-gray-900">Articles & Consommables</h3>
             {!isLocked && (
@@ -98,7 +110,7 @@ export default function ArticlesSection({ stage, articles, onAdd, onRemove, onUp
                             </td>
                         </tr>
                     ))}
-                    {articles.length === 0 && (
+                    {!isLocked && articles.length === 0 && (
                          <tr>
                             <td colSpan="6" className="py-8 text-center text-gray-500 italic">
                               Aucun article ajouté.
@@ -123,4 +135,3 @@ export default function ArticlesSection({ stage, articles, onAdd, onRemove, onUp
     </Card>
   );
 }
-

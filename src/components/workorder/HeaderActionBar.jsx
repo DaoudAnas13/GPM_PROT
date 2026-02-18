@@ -10,7 +10,7 @@ export default function HeaderActionBar({ onBack, stage, onSave, onSubmit, onEdi
   ];
 
   return (
-    <div className="sticky top-0 z-40 bg-white border-b border-[#E2E8F0] shadow-sm">
+    <div className="sticky top-16 z-30 bg-white border-b border-[#E2E8F0] shadow-sm">
       <div className="max-w-[1440px] mx-auto px-8 h-16 flex items-center justify-between">
         {/* Left: Breadcrumbs & Back */}
         <div className="flex items-center space-x-4">

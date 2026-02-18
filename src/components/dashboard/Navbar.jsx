@@ -4,8 +4,8 @@ import Button from '../ui/Button';
 
 export default function Navbar() {
   const navLinks = [
-    { name: 'Accueil', active: false },
-    { name: 'Missions', active: true },
+    { name: 'Accueil', active: true },
+    { name: 'Missions', active: false },
     { name: 'Clients', active: false },
     { name: 'Rapports', active: false },
     { name: 'Statistiques', active: false },

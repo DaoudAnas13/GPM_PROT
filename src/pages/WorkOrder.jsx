@@ -56,7 +56,7 @@ export default function WorkOrder() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center">
+      <div className="h-[calc(100vh-4rem)] flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
       </div>
     );
@@ -74,7 +74,7 @@ export default function WorkOrder() {
   const decisionReadOnly = false;
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] pb-20 relative font-sans">
+    <div className="pb-20 relative font-sans">
       <HeaderActionBar
         id={formData.id || 'Nouveau'}
         isNew={isNew}
@@ -85,7 +85,7 @@ export default function WorkOrder() {
         onEdit={() => setStage(1)} // Allow going back to edit for prototype
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
 
         {/* Top Info Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

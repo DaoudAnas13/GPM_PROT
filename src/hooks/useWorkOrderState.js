@@ -97,7 +97,7 @@ export default function useWorkOrderState(id) {
   const addArticle = (article) => {
     setFormData(prev => ({
       ...prev,
-      articles: [...prev.articles, { ...article, quantity: 1, _id: Date.now() }]
+      articles: [...prev.articles, { ...article, quantity: 1, _id: Date.now() + Math.random() }]
     }));
   };
 
