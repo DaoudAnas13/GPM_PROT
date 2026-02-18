@@ -53,6 +53,7 @@ export default function Missions() {
   // State
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [viewMode, setViewMode] = useState('grouped'); // 'grouped' | 'table'
+  const [groupBy, setGroupBy] = useState('chef'); // 'chef', 'creation', 'debut'
   const [filters, setFilters] = useState({
     search: '',
     status: [], // array of strings
@@ -109,12 +110,20 @@ export default function Missions() {
   const groupedData = useMemo(() => {
     if (viewMode !== 'grouped') return null;
     return filteredMissions.reduce((acc, curr) => {
-      const chef = curr.chef || 'Non assigné';
-      if (!acc[chef]) acc[chef] = [];
-      acc[chef].push(curr);
+      let key = '';
+      if (groupBy === 'chef') {
+        key = curr.chef || 'Non assigné';
+      } else if (groupBy === 'creation') {
+        key = curr.dateCreation ? curr.dateCreation.substring(0, 7) : 'Date inconnue'; // YYYY-MM
+      } else if (groupBy === 'debut') {
+        key = curr.dateDebut ? curr.dateDebut.substring(0, 7) : 'Date inconnue';
+      }
+
+      if (!acc[key]) acc[key] = [];
+      acc[key].push(curr);
       return acc;
     }, {});
-  }, [filteredMissions, viewMode]);
+  }, [filteredMissions, viewMode, groupBy]);
 
   // Handlers
   const toggleStatusFilter = (status) => {
@@ -148,25 +157,27 @@ export default function Missions() {
         </div>
 
         <div className="flex-1 overflow-y-auto py-4 space-y-6">
-          {/* Nav Item Helper */}
-          {['CONSULTATION', 'SUIVI', 'SUIVI TECHNIQUE', 'FACTURATION', 'COMMANDE'].map((section) => (
-            <div key={section} className={!sidebarOpen ? 'px-2' : 'px-4'}>
-              {sidebarOpen && <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2 px-2">{section}</h4>}
+            <div className={!sidebarOpen ? 'px-2' : 'px-4'}>
+              {sidebarOpen && <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2 px-2">CONSULTATION</h4>}
               <div className="space-y-1">
-                 {/* Mock items for visuals */}
-                 <div className={`flex items-center gap-3 p-2 rounded-lg cursor-pointer transition-colors ${section === 'CONSULTATION' ? 'bg-blue-50 border-l-4 border-blue-500' : 'hover:bg-gray-50 text-gray-500'}`}>
-                    <LayoutGrid size={18} className={section === 'CONSULTATION' ? 'text-blue-600' : 'text-gray-400'} />
-                    {sidebarOpen && <span className={`text-sm font-medium ${section === 'CONSULTATION' ? 'text-blue-900' : ''}`}>Par Chef Mission</span>}
-                 </div>
-                 {[...Array(2)].map((_, i) => (
-                    <div key={i} className="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-gray-50 text-gray-500">
-                       <List size={18} className="text-gray-400" />
-                       {sidebarOpen && <span className="text-sm">Autre Vue {i+1}</span>}
-                    </div>
+                 {[
+                    { id: 'chef', label: 'Par Chef Mission', icon: LayoutGrid },
+                    { id: 'creation', label: 'Par Date de création', icon: Calendar },
+                    { id: 'debut', label: 'Par Date début', icon: Calendar },
+                 ].map((item) => (
+                   <div
+                      key={item.id}
+                      onClick={() => { setGroupBy(item.id); setViewMode('grouped'); }}
+                      className={`flex items-center gap-3 p-2 rounded-lg cursor-pointer transition-colors ${
+                        groupBy === item.id && viewMode === 'grouped' ? 'bg-blue-50 border-l-4 border-blue-500' : 'hover:bg-gray-50 text-gray-500'
+                      }`}
+                   >
+                      <item.icon size={18} className={groupBy === item.id && viewMode === 'grouped' ? 'text-blue-600' : 'text-gray-400'} />
+                      {sidebarOpen && <span className={`text-sm font-medium ${groupBy === item.id && viewMode === 'grouped' ? 'text-blue-900' : ''}`}>{item.label}</span>}
+                   </div>
                  ))}
               </div>
             </div>
-          ))}
         </div>
       </aside>
 
@@ -456,6 +467,10 @@ export default function Missions() {
     </div>
   );
 }
+
+
+
+
 
 
 
