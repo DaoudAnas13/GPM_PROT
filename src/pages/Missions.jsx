@@ -132,6 +132,10 @@ export default function Missions() {
 
   // Grouped Data
   const groupedData = useMemo(() => {
+    if (groupBy === 'all') {
+      return { 'Toutes les missions': filteredMissions };
+    }
+
     return filteredMissions.reduce((acc, curr) => {
       let key = '';
       if (groupBy === 'chef') {
@@ -188,6 +192,7 @@ export default function Missions() {
               {sidebarOpen && <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2 px-2">CONSULTATION</h4>}
               <div className="space-y-1">
                  {[
+                    { id: 'all', label: 'Toutes les missions', icon: List },
                     { id: 'chef', label: 'Par Chef Mission', icon: LayoutGrid },
                     { id: 'client', label: 'Par Client', icon: Building },
                     { id: 'projet', label: 'Par Projet', icon: Building },
