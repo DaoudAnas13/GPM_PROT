@@ -1,15 +1,129 @@
 export const missions = [
-  { id: 'MSN-001', title: 'Audit Réseau Tunis', client: 'TeleCom SA', chef: 'Mehdi B.', status: 'En Cours', ville: 'Tunis', zone: 'Nord', dateDebut: '2025-06-01', dateFin: '2025-06-15', motif: 'Maintenance', voiture: 'TN-2241-A' },
-  { id: 'MSN-002', title: 'Installation Fibre Sfax', client: 'BatiGroup', chef: 'Sarra K.', status: 'En Attente', ville: 'Sfax', zone: 'Sud', dateDebut: '2025-06-10', dateFin: '2025-06-20', motif: 'Installation', voiture: 'TN-0091-B' },
-  { id: 'MSN-003', title: 'Migration Serveurs Sousse', client: 'DataCore', chef: 'Amine T.', status: 'Terminé', ville: 'Sousse', zone: 'Centre', dateDebut: '2025-05-20', dateFin: '2025-05-30', motif: 'Migration', voiture: 'TN-5512-C' },
-  { id: 'MSN-004', title: 'Support VPN Nabeul', client: 'SecureNet', chef: 'Lina M.', status: 'Annulé', ville: 'Nabeul', zone: 'Nord-Est', dateDebut: '2025-06-05', dateFin: '2025-06-08', motif: 'Support', voiture: 'TN-3302-D' },
-  { id: 'MSN-005', title: 'Déploiement ERP Ariana', client: 'FinGroup', chef: 'Karim S.', status: 'En Cours', ville: 'Ariana', zone: 'Grand Tunis', dateDebut: '2025-06-12', dateFin: '2025-07-01', motif: 'Déploiement', voiture: 'TN-7761-E' },
+  { 
+    id: 'MSN-2026-001', 
+    title: 'Installation Fibre Optique', 
+    client: 'Tunisie Telecom', 
+    chef: 'Ahmed Ben Salah', 
+    status: 'Planifiée', 
+    ville: 'Tunis', 
+    dateDebut: '2026-02-20', 
+    dateFin: '2026-02-22', 
+    priorite: 'Haute', 
+    progress: 0,
+    type: 'Installation fibre'
+  },
+  { 
+    id: 'MSN-2026-002', 
+    title: 'Maintenance Industrielle #45', 
+    client: 'Poulina Group Holding', 
+    chef: 'Mohamed Trabelsi', 
+    status: 'En Cours', 
+    ville: 'Sfax', 
+    dateDebut: '2026-02-18', 
+    dateFin: '2026-02-25', 
+    priorite: 'Moyenne', 
+    progress: 45,
+    type: 'Maintenance industrielle'
+  },
+  { 
+    id: 'MSN-2026-003', 
+    title: 'Audit Technique Usine', 
+    client: 'Délice Danone', 
+    chef: 'Yassine Karray', 
+    status: 'En Retard', 
+    ville: 'Sousse', 
+    dateDebut: '2026-02-10', 
+    dateFin: '2026-02-15', 
+    priorite: 'Haute', 
+    progress: 80,
+    type: 'Audit technique'
+  },
+  { 
+    id: 'MSN-2026-004', 
+    title: 'Inspection Sécurité Incendie', 
+    client: 'Monoprix Tunisie', 
+    chef: 'Walid Gharbi', 
+    status: 'Terminée', 
+    ville: 'Nabeul', 
+    dateDebut: '2026-01-15', 
+    dateFin: '2026-01-16', 
+    priorite: 'Faible', 
+    progress: 100,
+    type: 'Inspection sécurité'
+  },
+  { 
+    id: 'MSN-2026-005', 
+    title: 'Maintenance Climatisation Centrale', 
+    client: 'Carthage Cement', 
+    chef: 'Houssem Jaziri', 
+    status: 'Planifiée', 
+    ville: 'Ben Arous', 
+    dateDebut: '2026-03-01', 
+    dateFin: '2026-03-05', 
+    priorite: 'Moyenne', 
+    progress: 0,
+    type: 'Maintenance climatisation'
+  },
+  { 
+    id: 'MSN-2026-006', 
+    title: 'Raccordement Groupe Électrogène', 
+    client: 'Société Tunisienne d’Électricité', 
+    chef: 'Ahmed Ben Salah', 
+    status: 'En Cours', 
+    ville: 'Bizerte', 
+    dateDebut: '2026-02-17', 
+    dateFin: '2026-02-20', 
+    priorite: 'Haute', 
+    progress: 60,
+    type: 'Installation groupe électrogène'
+  },
+  { 
+    id: 'MSN-2026-007', 
+    title: 'Révision Système Pompage', 
+    client: 'Délice Danone', 
+    chef: 'Mohamed Trabelsi', 
+    status: 'En Attente', 
+    ville: 'Gabès', 
+    dateDebut: '2026-02-28', 
+    dateFin: '2026-03-02', 
+    priorite: 'Moyenne', 
+    progress: 10,
+    type: 'Maintenance industrielle'
+  },
+  { 
+    id: 'MSN-2026-008', 
+    title: 'Câblage Réseau Siège', 
+    client: 'Monoprix Tunisie', 
+    chef: 'Yassine Karray', 
+    status: 'Annulée', 
+    ville: 'Ariana', 
+    dateDebut: '2026-01-20', 
+    dateFin: '2026-01-22', 
+    priorite: 'Faible', 
+    progress: 0,
+    type: 'Installation fibre'
+  },
 ];
 
 export const clients = [
-  { id: 'CLT-01', raisonSociale: 'TeleCom SA', matriculeFiscal: '1234567A', email: 'contact@telecom.tn', telephone: '+216 71 000 001', adresse: '12 Rue de la Liberté, Tunis', direction: 'DSI', demandeur: 'Ali Hamdi', responsableSite: 'Nour Ben Ali' },
-  { id: 'CLT-02', raisonSociale: 'BatiGroup', matriculeFiscal: '7654321B', email: 'info@batigroup.tn', telephone: '+216 74 000 002', adresse: '55 Av. Habib Bourguiba, Sfax', direction: 'DG', demandeur: 'Hajer Trabelsi', responsableSite: 'Fares Miled' },
-  { id: 'CLT-03', raisonSociale: 'DataCore', matriculeFiscal: '1122334C', email: 'hello@datacore.tn', telephone: '+216 73 000 003', adresse: '8 Rue Ibn Khaldoun, Sousse', direction: 'IT', demandeur: 'Ramzi Chaker', responsableSite: 'Dorra Slim' },
+  { id: 'CLT-01', raisonSociale: 'Société Tunisienne d’Électricité (STEG)', ville: 'Tunis', secteur: 'Énergie' },
+  { id: 'CLT-02', raisonSociale: 'Tunisie Telecom', ville: 'Tunis', secteur: 'Télécom' },
+  { id: 'CLT-03', raisonSociale: 'Poulina Group Holding', ville: 'Ben Arous', secteur: 'Industrie' },
+  { id: 'CLT-04', raisonSociale: 'Délice Danone', ville: 'Tunis', secteur: 'Agroalimentaire' },
+  { id: 'CLT-05', raisonSociale: 'Monoprix Tunisie', ville: 'Mégrine', secteur: 'Distribution' },
+  { id: 'CLT-06', raisonSociale: 'Carthage Cement', ville: 'Tunis', secteur: 'Construction' },
+];
+
+export const cities = [
+  'Tunis', 'Ariana', 'Ben Arous', 'Sfax', 'Sousse', 'Nabeul', 'Bizerte', 'Gabès'
+];
+
+export const technicians = [
+  { id: 'T-01', name: 'Ahmed Ben Salah', role: 'Technicien Senior' },
+  { id: 'T-02', name: 'Mohamed Trabelsi', role: 'Technicien Confirmé' },
+  { id: 'T-03', name: 'Yassine Karray', role: 'Technicien Expert' },
+  { id: 'T-04', name: 'Walid Gharbi', role: 'Technicien Junior' },
+  { id: 'T-05', name: 'Houssem Jaziri', role: 'Chef d\'équipe' },
 ];
 
 export const articles = [
@@ -74,8 +188,10 @@ export const intervenants = [
 ];
 
 export const statusConfig = {
-  'En Cours':   { bg: 'bg-blue-100',   text: 'text-blue-700'  },
-  'En Attente': { bg: 'bg-amber-100',  text: 'text-amber-700' },
-  'Terminé':    { bg: 'bg-green-100',  text: 'text-green-700' },
-  'Annulé':     { bg: 'bg-red-100',    text: 'text-red-700'   },
+  'Planifiée':  { bg: 'bg-blue-100',   text: 'text-blue-700', border: 'border-blue-200' },
+  'En Cours':   { bg: 'bg-emerald-100', text: 'text-emerald-700', border: 'border-emerald-200' },
+  'En Attente': { bg: 'bg-amber-100',  text: 'text-amber-700', border: 'border-amber-200' },
+  'En Retard':  { bg: 'bg-red-100',    text: 'text-red-700', border: 'border-red-200' },
+  'Terminée':   { bg: 'bg-indigo-100', text: 'text-indigo-700', border: 'border-indigo-200' },
+  'Annulée':    { bg: 'bg-gray-100',   text: 'text-gray-700', border: 'border-gray-200' },
 };
