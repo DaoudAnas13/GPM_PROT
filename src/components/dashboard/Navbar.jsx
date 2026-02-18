@@ -1,38 +1,46 @@
 import React from 'react';
 import { User, LogOut } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 import Button from '../ui/Button';
 
 export default function Navbar() {
+  const location = useLocation();
+
   const navLinks = [
-    { name: 'Accueil', active: true },
-    { name: 'Missions', active: false },
-    { name: 'Clients', active: false },
-    { name: 'Rapports', active: false },
-    { name: 'Statistiques', active: false },
+    { name: 'Accueil', path: '/dashboard' },
+    { name: 'Missions', path: '/missions' },
+    { name: 'Clients', path: '/clients' },
+    { name: 'Rapports', path: '/rapports' },
+    { name: 'Statistiques', path: '/stats' },
   ];
+
+  const isActive = (path) => {
+    if (path === '/dashboard') return location.pathname === '/dashboard' || location.pathname === '/';
+    return location.pathname.startsWith(path);
+  };
 
   return (
     <nav className="sticky top-0 z-40 w-full bg-white border-b border-[#E2E8F0] shadow-sm">
       <div className="max-w-[1440px] mx-auto px-8 h-16 flex items-center justify-between">
         {/* Logo */}
         <div className="flex-shrink-0 flex items-center">
-          <span className="text-[#2563EB] font-bold text-xl">GPM</span>
+          <Link to="/dashboard" className="text-[#2563EB] font-bold text-xl">GPM</Link>
         </div>
 
         {/* Navigation Links */}
         <div className="hidden md:flex space-x-8">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
-              href="#"
+              to={link.path}
               className={`text-sm font-medium transition-colors ${
-                link.active
+                isActive(link.path)
                   ? 'text-[#2563EB] font-semibold border-b-2 border-[#2563EB] py-5'
                   : 'text-[#64748B] hover:text-[#2563EB] py-5'
               }`}
             >
               {link.name}
-            </a>
+            </Link>
           ))}
         </div>
 
