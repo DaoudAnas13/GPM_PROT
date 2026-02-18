@@ -108,7 +108,6 @@ export default function Missions() {
 
   // Grouped Data
   const groupedData = useMemo(() => {
-    if (viewMode !== 'grouped') return null;
     return filteredMissions.reduce((acc, curr) => {
       let key = '';
       if (groupBy === 'chef') {
@@ -169,11 +168,11 @@ export default function Missions() {
                       key={item.id}
                       onClick={() => { setGroupBy(item.id); setViewMode('grouped'); }}
                       className={`flex items-center gap-3 p-2 rounded-lg cursor-pointer transition-colors ${
-                        groupBy === item.id && viewMode === 'grouped' ? 'bg-blue-50 border-l-4 border-blue-500' : 'hover:bg-gray-50 text-gray-500'
+                        groupBy === item.id ? 'bg-blue-50 border-l-4 border-blue-500' : 'hover:bg-gray-50 text-gray-500'
                       }`}
                    >
-                      <item.icon size={18} className={groupBy === item.id && viewMode === 'grouped' ? 'text-blue-600' : 'text-gray-400'} />
-                      {sidebarOpen && <span className={`text-sm font-medium ${groupBy === item.id && viewMode === 'grouped' ? 'text-blue-900' : ''}`}>{item.label}</span>}
+                      <item.icon size={18} className={groupBy === item.id ? 'text-blue-600' : 'text-gray-400'} />
+                      {sidebarOpen && <span className={`text-sm font-medium ${groupBy === item.id ? 'text-blue-900' : ''}`}>{item.label}</span>}
                    </div>
                  ))}
               </div>
@@ -410,56 +409,79 @@ export default function Missions() {
 
             {/* Table View */}
             {viewMode === 'table' && filteredMissions.length > 0 && (
-                <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-                    <table className="w-full text-left border-collapse">
-                        <thead className="bg-gray-50 sticky top-0 z-10">
-                            <tr>
-                                {['ID', 'Mission', 'Client', 'Ville', 'Chef', 'Début', 'Priorité', 'Statut', 'Progression'].map((h) => (
-                                    <th key={h} className="py-3 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200">{h}</th>
-                                ))}
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-gray-100">
-                            {filteredMissions.map((mission, idx) => (
-                                <tr key={mission.id} className={`hover:bg-gray-50 transition-colors ${idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/50'}`}>
-                                    <td className="py-3 px-4 text-xs font-mono text-gray-500">{mission.id}</td>
-                                    <td className="py-3 px-4">
-                                        <div className="font-medium text-sm text-gray-900">{mission.title}</div>
-                                        <div className="text-xs text-gray-400">{mission.type || 'Mission'}</div>
-                                    </td>
-                                    <td className="py-3 px-4 text-sm text-gray-600">{mission.client}</td>
-                                    <td className="py-3 px-4 text-sm text-gray-600">{mission.ville}</td>
-                                    <td className="py-3 px-4 text-sm text-gray-600">
-                                         <div className="flex items-center gap-2">
-                                             <div className={`h-5 w-5 rounded-full flex items-center justify-center text-white text-[9px] font-bold ${getChefColor(mission.chef)}`}>
-                                                {mission.chef.split(' ').map(n=>n[0]).join('').substring(0,2)}
-                                             </div>
-                                             {mission.chef}
-                                         </div>
-                                    </td>
-                                    <td className="py-3 px-4 text-sm text-gray-600 whitespace-nowrap">{mission.dateDebut}</td>
-                                    <td className="py-3 px-4">
-                                         <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
-                                            mission.priorite === 'Haute' ? 'text-red-700 bg-red-50 border-red-200' : 
-                                            mission.priorite === 'Moyenne' ? 'text-amber-700 bg-amber-50 border-amber-200' : 'text-gray-500 bg-gray-50 border-gray-200'
-                                        }`}>{mission.priorite}</span>
-                                    </td>
-                                    <td className="py-3 px-4"><Badge status={mission.status} /></td>
-                                    <td className="py-3 px-4 w-32">
-                                        <div className="flex items-center gap-2">
-                                            <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                                                <div
-                                                    className="h-full bg-blue-500 rounded-full"
-                                                    style={{ width: `${mission.progress || 0}%` }}
-                                                />
-                                            </div>
-                                            <span className="text-xs text-gray-500 w-8 text-right">{mission.progress || 0}%</span>
-                                        </div>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                <div className="space-y-8 pb-10">
+                    {Object.entries(groupedData).map(([groupKey, groupMissions]) => (
+                        <div key={groupKey} className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                            {/* Group Header */}
+                            <div className="flex items-center gap-3 bg-gray-50 px-4 py-3 border-b border-gray-200">
+                                {groupBy === 'chef' && (
+                                     <div className={`h-8 w-8 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-sm ${getChefColor(groupKey)}`}>
+                                        {groupKey.split(' ').map(n=>n[0]).join('').substring(0,2)}
+                                     </div>
+                                )}
+                                <h3 className="text-base font-bold text-gray-800">
+                                    {groupKey}
+                                </h3>
+                                <span className="bg-gray-200 text-gray-600 text-[10px] font-bold px-2 py-0.5 rounded-full">{groupMissions.length}</span>
+                            </div>
+
+                            <table className="w-full text-left border-collapse">
+                                <thead className="bg-gray-50">
+                                    <tr>
+                                        <th className="py-3 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200">ID</th>
+                                        <th className="py-3 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200">Mission</th>
+                                        <th className="py-3 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200">Client</th>
+                                        <th className="py-3 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200">Ville</th>
+                                        <th className="py-3 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200">Chef</th>
+                                        <th className="py-3 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200">Début</th>
+                                        <th className="py-3 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200">Priorité</th>
+                                        <th className="py-3 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200">Statut</th>
+                                        <th className="py-3 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200">Progression</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y divide-gray-100">
+                                    {groupMissions.map((mission, idx) => (
+                                        <tr key={mission.id} className={`hover:bg-gray-50 transition-colors ${idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/50'}`}>
+                                            <td className="py-3 px-4 text-xs font-mono text-gray-500">{mission.id}</td>
+                                            <td className="py-3 px-4">
+                                                <div className="font-medium text-sm text-gray-900">{mission.title}</div>
+                                                <div className="text-xs text-gray-400">{mission.type || 'Mission'}</div>
+                                            </td>
+                                            <td className="py-3 px-4 text-sm text-gray-600">{mission.client}</td>
+                                            <td className="py-3 px-4 text-sm text-gray-600">{mission.ville}</td>
+                                            <td className="py-3 px-4 text-sm text-gray-600">
+                                                <div className="flex items-center gap-2">
+                                                    <div className={`h-5 w-5 rounded-full flex items-center justify-center text-white text-[9px] font-bold ${getChefColor(mission.chef)}`}>
+                                                        {mission.chef.split(' ').map(n=>n[0]).join('').substring(0,2)}
+                                                    </div>
+                                                    {mission.chef}
+                                                </div>
+                                            </td>
+                                            <td className="py-3 px-4 text-sm text-gray-600 whitespace-nowrap">{mission.dateDebut}</td>
+                                            <td className="py-3 px-4">
+                                                <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
+                                                    mission.priorite === 'Haute' ? 'text-red-700 bg-red-50 border-red-200' :
+                                                    mission.priorite === 'Moyenne' ? 'text-amber-700 bg-amber-50 border-amber-200' : 'text-gray-500 bg-gray-50 border-gray-200'
+                                                }`}>{mission.priorite}</span>
+                                            </td>
+                                            <td className="py-3 px-4"><Badge status={mission.status} /></td>
+                                            <td className="py-3 px-4 w-32">
+                                                <div className="flex items-center gap-2">
+                                                    <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                                                        <div
+                                                            className="h-full bg-blue-500 rounded-full"
+                                                            style={{ width: `${mission.progress || 0}%` }}
+                                                        />
+                                                    </div>
+                                                    <span className="text-xs text-gray-500 w-8 text-right">{mission.progress || 0}%</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    ))}
                 </div>
             )}
         </div>
@@ -467,10 +489,5 @@ export default function Missions() {
     </div>
   );
 }
-
-
-
-
-
 
 
