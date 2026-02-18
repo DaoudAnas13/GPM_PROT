@@ -4,7 +4,7 @@ import {
   PanelLeftClose, PanelLeft, LayoutGrid, List, Search
 } from 'lucide-react';
 import Badge from '../components/ui/Badge';
-import { missions } from '../data/mockData';
+import { missions, projets, clients } from '../data/mockData';
 
 // Constants
 const STATUS_OPTIONS = [
@@ -68,15 +68,39 @@ export default function Missions() {
   const uniqueVilles = useMemo(() => [...new Set(missions.map(m => m.ville))], []);
   const uniqueTypes = useMemo(() => [...new Set(missions.map(m => m.type || 'Standard'))], []);
 
+  // Enrich missions with Project info
+  const enrichedMissions = useMemo(() => {
+    return missions.map(mission => {
+      // Find client ID
+      // Approx match for demo since mock data has slight inconsistencies
+      const clientObj = clients.find(c =>
+        c.raisonSociale.includes(mission.client) || mission.client.includes(c.raisonSociale)
+      );
+
+      let project = 'Projet Non Assigné';
+      if (clientObj) {
+         // Find a project for this client
+         const clientProjects = projets.filter(p => p.clientId === clientObj.id);
+         if (clientProjects.length > 0) {
+            // Deterministic assignment based on mission ID char code
+            const index = mission.id.charCodeAt(mission.id.length - 1) % clientProjects.length;
+            project = clientProjects[index].nom;
+         }
+      }
+      return { ...mission, project };
+    });
+  }, []);
+
   // Filter Logic
   const filteredMissions = useMemo(() => {
-    return missions.filter(m => {
+    return enrichedMissions.filter(m => {
       // Search
       const searchMatch = !filters.search ||
         m.title.toLowerCase().includes(filters.search.toLowerCase()) ||
         m.client.toLowerCase().includes(filters.search.toLowerCase()) ||
         (m.chef && m.chef.toLowerCase().includes(filters.search.toLowerCase())) ||
-        m.id.toLowerCase().includes(filters.search.toLowerCase());
+        m.id.toLowerCase().includes(filters.search.toLowerCase()) ||
+        m.project.toLowerCase().includes(filters.search.toLowerCase());
 
       // Status
       const statusMatch = filters.status.length === 0 || filters.status.includes(m.status);
@@ -112,6 +136,10 @@ export default function Missions() {
       let key = '';
       if (groupBy === 'chef') {
         key = curr.chef || 'Non assigné';
+      } else if (groupBy === 'client') {
+        key = curr.client || 'Sans Client';
+      } else if (groupBy === 'projet') {
+        key = curr.project || 'Projet Non Assigné';
       } else if (groupBy === 'creation') {
         key = curr.dateCreation ? curr.dateCreation.substring(0, 7) : 'Date inconnue'; // YYYY-MM
       } else if (groupBy === 'debut') {
@@ -161,6 +189,8 @@ export default function Missions() {
               <div className="space-y-1">
                  {[
                     { id: 'chef', label: 'Par Chef Mission', icon: LayoutGrid },
+                    { id: 'client', label: 'Par Client', icon: Building },
+                    { id: 'projet', label: 'Par Projet', icon: Building },
                     { id: 'creation', label: 'Par Date de création', icon: Calendar },
                     { id: 'debut', label: 'Par Date début', icon: Calendar },
                  ].map((item) => (
