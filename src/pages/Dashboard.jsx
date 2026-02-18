@@ -33,10 +33,10 @@ export default function Dashboard() {
 
   // --- KPI Calculation ---
   const totalMissions = missions.length;
-  const overdueMissions = missions.filter(m => m.status === 'En Retard').length;
+  const overdueMissions = missions.filter(m => m.status === 'Verification WorkOrder').length;
   // Mock "This Week" - let's assume 3 for demo
   const thisWeekMissions = 3;
-  const completedMissions = missions.filter(m => m.status === 'Terminée').length;
+  const completedMissions = missions.filter(m => m.status === 'Fin').length;
   const completionRate = totalMissions > 0 ? Math.round((completedMissions / totalMissions) * 100) : 0;
 
   // --- Chart Data Preparation ---
@@ -47,10 +47,10 @@ export default function Dashboard() {
   }, {});
 
   const statusChartData = [
-    { label: 'Planifiée', value: statusCounts['Planifiée'] || 0, color: '#3b82f6' }, // blue-500
-    { label: 'En Cours', value: statusCounts['En Cours'] || 0, color: '#10b981' },   // emerald-500
-    { label: 'En Retard', value: statusCounts['En Retard'] || 0, color: '#ef4444' }, // red-500
-    { label: 'Terminée', value: statusCounts['Terminée'] || 0, color: '#6366f1' },  // indigo-500
+    { label: 'Creation', value: statusCounts['Creation'] || 0, color: '#3b82f6' }, // blue-500
+    { label: 'Execution', value: statusCounts['Execution des Travaux'] || 0, color: '#10b981' },   // emerald-500
+    { label: 'Verification', value: statusCounts['Verification WorkOrder'] || 0, color: '#ef4444' }, // red-500
+    { label: 'Fin', value: statusCounts['Fin'] || 0, color: '#6366f1' },  // indigo-500
   ].filter(d => d.value > 0);
 
   // 2. Monthly Missions (Mock Data for demo as dates are sparse)
@@ -94,7 +94,7 @@ export default function Dashboard() {
             trendValue="12%"
           />
           <StatCard
-            title="En Retard"
+            title="Verification WorkOrder"
             value={overdueMissions}
             icon={Clock}
             color="bg-red-500"

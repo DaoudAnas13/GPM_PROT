@@ -9,11 +9,12 @@ import Button from '../ui/Button';
 
 const getStatusBorder = (status) => {
   switch (status) {
-    case 'Planifiée': return 'border-l-4 border-l-blue-500';
-    case 'En Cours': return 'border-l-4 border-l-emerald-500';
-    case 'En Retard': return 'border-l-4 border-l-red-500';
-    case 'Terminée': return 'border-l-4 border-l-indigo-500';
-    case 'Annulée': return 'border-l-4 border-l-gray-500';
+    case 'Creation': return 'border-l-4 border-l-blue-500';
+    case 'Execution des Travaux': return 'border-l-4 border-l-emerald-500';
+    case 'Verification WorkOrder': return 'border-l-4 border-l-red-500';
+    case 'Fin': return 'border-l-4 border-l-green-600';
+    case 'Validation': return 'border-l-4 border-l-amber-500';
+    case 'Affectation Devis': return 'border-l-4 border-l-slate-400';
     default: return 'border-l-4 border-l-gray-300';
   }
 };
@@ -74,11 +75,14 @@ export default function MissionCard({ title, data, total = 0, onRowClick, isLoad
             className="text-sm border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 bg-gray-50 border"
           >
             <option value="Toutes">Toutes</option>
-            <option value="Planifiée">Planifiée</option>
-            <option value="En Cours">En Cours</option>
-            <option value="En Retard">En Retard</option>
-            <option value="Terminée">Terminée</option>
-            <option value="Annulée">Annulée</option>
+            <option value="Affectation Devis">Affectation Devis</option>
+            <option value="Creation">Creation</option>
+            <option value="Execution des Travaux">Execution des Travaux</option>
+            <option value="Fin">Fin</option>
+            <option value="Validation">Validation</option>
+            <option value="Validation Ressources">Validation Ressources</option>
+            <option value="Validation Technique">Validation Technique</option>
+            <option value="Verification WorkOrder">Verification WorkOrder</option>
           </select>
 
           <input
@@ -151,8 +155,9 @@ export default function MissionCard({ title, data, total = 0, onRowClick, isLoad
                 <div className="w-full bg-gray-100 rounded-full h-1.5">
                   <div
                     className={`h-1.5 rounded-full ${
-                      mission.status === 'En Retard' ? 'bg-red-500' : 
-                      mission.status === 'Terminée' ? 'bg-indigo-500' : 'bg-blue-500'
+                      mission.status === 'Verification WorkOrder' ? 'bg-red-500' : 
+                      mission.status === 'Fin' ? 'bg-green-500' : 
+                      mission.status === 'Execution des Travaux' ? 'bg-emerald-500' : 'bg-blue-500'
                     }`}
                     style={{ width: `${mission.progress || 0}%` }}
                   ></div>

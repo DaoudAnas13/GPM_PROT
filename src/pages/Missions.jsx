@@ -7,7 +7,16 @@ import Badge from '../components/ui/Badge';
 import { missions } from '../data/mockData';
 
 // Constants
-const STATUS_OPTIONS = ['Planifiée', 'En Cours', 'En Retard', 'En Attente', 'Terminée', 'Annulée'];
+const STATUS_OPTIONS = [
+  'Affectation Devis',
+  'Creation',
+  'Execution des Travaux',
+  'Fin',
+  'Validation',
+  'Validation Ressources',
+  'Validation Technique',
+  'Verification WorkOrder'
+];
 const PRIORITY_OPTIONS = ['Haute', 'Moyenne', 'Faible'];
 
 // Helper Component: Filter Pill
@@ -91,9 +100,9 @@ export default function Missions() {
   // KPIs
   const kpis = {
     total: filteredMissions.length,
-    enCours: filteredMissions.filter(m => m.status === 'En Cours').length,
-    enRetard: filteredMissions.filter(m => m.status === 'En Retard').length,
-    terminees: filteredMissions.filter(m => m.status === 'Terminée').length,
+    execution: filteredMissions.filter(m => m.status === 'Execution des Travaux').length,
+    verification: filteredMissions.filter(m => m.status === 'Verification WorkOrder').length,
+    fin: filteredMissions.filter(m => m.status === 'Fin').length,
   };
 
   // Grouped Data
@@ -124,7 +133,8 @@ export default function Missions() {
   return (
     <div className="flex h-screen bg-[#F8FAFC] overflow-hidden font-sans">
 
-      {/* SECTION 1: SIDEBAR */}
+      {/* ...existing code... */}
+
       <aside
         className={`bg-white border-r border-gray-200 transition-all duration-300 flex flex-col z-20 ${
           sidebarOpen ? 'w-64' : 'w-16'
@@ -166,9 +176,9 @@ export default function Missions() {
         {/* SECTION 2: KPIS */}
         <div className="px-6 py-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 shrink-0">
           <KPITile title="Total Missions" value={kpis.total} color="border-l-blue-500" />
-          <KPITile title="En Cours" value={kpis.enCours} color="border-l-indigo-500" />
-          <KPITile title="En Retard" value={kpis.enRetard} color="border-l-red-500" />
-          <KPITile title="Terminées" value={kpis.terminees} color="border-l-emerald-500" />
+          <KPITile title="Execution des Travaux" value={kpis.execution} color="border-l-indigo-500" />
+          <KPITile title="Verification WorkOrder" value={kpis.verification} color="border-l-red-500" />
+          <KPITile title="Fin" value={kpis.fin} color="border-l-emerald-500" />
         </div>
 
         {/* SECTION 3: FILTER BAR */}
@@ -215,12 +225,14 @@ export default function Missions() {
                     active={filters.status.includes(status)}
                     onClick={() => toggleStatusFilter(status)}
                     colorClass={{
-                        'Planifiée': 'bg-slate-100 text-slate-700 border-slate-300',
-                        'En Cours': 'bg-blue-100 text-blue-700 border-blue-300',
-                        'En Retard': 'bg-red-100 text-red-700 border-red-300',
-                        'Terminée': 'bg-emerald-100 text-emerald-700 border-emerald-300',
-                        'Annulée': 'bg-gray-100 text-gray-700 border-gray-300',
-                        'En Attente': 'bg-amber-100 text-amber-700 border-amber-300'
+                        'Affectation Devis': 'bg-slate-100 text-slate-700 border-slate-300',
+                        'Creation': 'bg-blue-100 text-blue-700 border-blue-300',
+                        'Execution des Travaux': 'bg-emerald-100 text-emerald-700 border-emerald-300',
+                        'Fin': 'bg-green-100 text-green-700 border-green-300',
+                        'Validation': 'bg-amber-100 text-amber-700 border-amber-300',
+                        'Validation Ressources': 'bg-orange-100 text-orange-700 border-orange-300',
+                        'Validation Technique': 'bg-purple-100 text-purple-700 border-purple-300',
+                        'Verification WorkOrder': 'bg-red-100 text-red-700 border-red-300'
                     }[status]}
                  />
                ))}
@@ -324,10 +336,11 @@ export default function Missions() {
                                     <div
                                         key={mission.id}
                                         className={`group relative bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 p-4 cursor-pointer overflow-hidden flex flex-col justify-between
-                                            ${mission.status === 'En Retard' ? 'border-l-[4px] border-l-red-500' : 'border-l-[4px] border-l-gray-300'}
-                                            ${mission.status === 'En Cours' ? 'border-l-[4px] border-l-blue-500' : ''}
-                                            ${mission.status === 'Terminée' ? 'border-l-[4px] border-l-emerald-500' : ''}
-                                            ${mission.status === 'Planifiée' ? 'border-l-[4px] border-l-gray-400' : ''}
+                                            ${mission.status === 'Verification WorkOrder' ? 'border-l-[4px] border-l-red-500' : 'border-l-[4px] border-l-gray-300'}
+                                            ${mission.status === 'Execution des Travaux' ? 'border-l-[4px] border-l-emerald-500' : ''}
+                                            ${mission.status === 'Fin' ? 'border-l-[4px] border-l-green-600' : ''}
+                                            ${mission.status === 'Creation' ? 'border-l-[4px] border-l-blue-400' : ''}
+                                            ${mission.status === 'Validation' ? 'border-l-[4px] border-l-amber-400' : ''}
                                         `}
                                     >
                                         <div>
