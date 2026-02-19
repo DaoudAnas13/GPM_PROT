@@ -4,6 +4,7 @@ import Navbar from './components/dashboard/Navbar';
 import Dashboard from './pages/Dashboard';
 import Missions from './pages/Missions';
 import Clients from './pages/Clients';
+import Projets from './pages/Projets';
 import WorkOrder from './pages/WorkOrder';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/missions" element={<Missions />} />
           <Route path="/clients" element={<Clients />} />
+          <Route path="/projets" element={<Projets />} />
           <Route path="/mission/new" element={<WorkOrder />} />
           <Route path="/mission/:id" element={<WorkOrder />} />
         </Routes>

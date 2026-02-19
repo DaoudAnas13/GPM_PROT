@@ -495,10 +495,18 @@ export const articles = [
 ];
 
 export const projets = [
-  { id: 'PRJ-01', code: 'PRJ-01', nom: 'Réseau National T1',      clientId: 'CLT-01', statut: 'Actif'     },
-  { id: 'PRJ-02', code: 'PRJ-02', nom: 'Expansion Sud 2025',       clientId: 'CLT-02', statut: 'Actif'     },
-  { id: 'PRJ-03', code: 'PRJ-03', nom: 'Cloud Migration Phase 2',  clientId: 'CLT-03', statut: 'En Pause'  },
-  { id: 'PRJ-04', code: 'PRJ-04', nom: 'Déploiement ERP Ariana',   clientId: 'CLT-01', statut: 'Actif'     },
+  { id: 'PRJ-01', code: 'PRJ-2026-001', nom: 'Réseau National T1',      clientId: 'CLT-01', statut: 'Execution des Travaux', budget: 150000, dateDebut: '2026-01-15' },
+  { id: 'PRJ-02', code: 'PRJ-2026-002', nom: 'Expansion Sud 2025',       clientId: 'CLT-02', statut: 'Etude opportunité',     budget: 75000, dateDebut: '2026-02-01' },
+  { id: 'PRJ-03', code: 'PRJ-2026-003', nom: 'Cloud Migration Phase 2',  clientId: 'CLT-03', statut: 'Brouillon',             budget: 50000, dateDebut: '2026-03-10' },
+  { id: 'PRJ-04', code: 'PRJ-2026-004', nom: 'Déploiement ERP Ariana',   clientId: 'CLT-01', statut: 'Fin',                   budget: 200000, dateDebut: '2025-11-20' },
+  { id: 'PRJ-05', code: 'PRJ-2026-005', nom: 'Sécurité Incendie Global', clientId: 'CLT-05', statut: 'Cloture projet',        budget: 30000, dateDebut: '2025-12-05' },
+  { id: 'PRJ-06', code: 'PRJ-2026-006', nom: 'Modernisation Usine Nord', clientId: 'CLT-04', statut: 'Execution des Travaux', budget: 450000, dateDebut: '2026-01-05' },
+  { id: 'PRJ-07', code: 'PRJ-2026-007', nom: 'Upgrade Fibre Optique',    clientId: 'CLT-02', statut: 'Etude opportunité',     budget: 120000, dateDebut: '2026-04-01' },
+  { id: 'PRJ-08', code: 'PRJ-2026-008', nom: 'Maintenance Préventive',   clientId: 'CLT-06', statut: 'Brouillon',             budget: 15000, dateDebut: '2026-02-28' },
+  { id: 'PRJ-09', code: 'PRJ-2026-009', nom: 'Audit Energétique 2026',   clientId: 'CLT-06', statut: 'Fin',                   budget: 8500, dateDebut: '2026-01-10' },
+  { id: 'PRJ-10', code: 'PRJ-2026-010', nom: 'Data Center Sfax',         clientId: 'CLT-03', statut: 'Execution des Travaux', budget: 320000, dateDebut: '2026-02-15' },
+  { id: 'PRJ-11', code: 'PRJ-2026-011', nom: 'Formation Sécurité',       clientId: 'CLT-04', statut: 'Cloture projet',        budget: 12000, dateDebut: '2025-10-15' },
+  { id: 'PRJ-12', code: 'PRJ-2026-012', nom: 'Réseau 5G Pilote',         clientId: 'CLT-02', statut: 'Etude opportunité',     budget: 500000, dateDebut: '2026-05-01' },
 ];
 
 export const villes = [

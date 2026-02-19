@@ -10,7 +10,7 @@ export default function Navbar() {
     { name: 'Accueil', path: '/dashboard' },
     { name: 'Missions', path: '/missions' },
     { name: 'Clients', path: '/clients' },
-    { name: 'Rapports', path: '/rapports' },
+    { name: 'Projets', path: '/projets' },
     { name: 'Statistiques', path: '/stats' },
   ];
 
