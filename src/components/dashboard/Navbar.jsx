@@ -12,6 +12,7 @@ export default function Navbar() {
     { name: 'Clients', path: '/clients' },
     { name: 'Projets', path: '/projets' },
     { name: 'Ressources', path: '/ressources' },
+    { name: 'Facturation', path: '/facturation' },
   ];
 
   const isActive = (path) => {

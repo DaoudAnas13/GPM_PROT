@@ -6,6 +6,14 @@ import {
 import { notesDeFrais, voitures, missions } from '../data/mockData';
 
 // Constants
+const NF_STATUSES = [
+  'Creation',
+  'Verification',
+  'Validation direction technique',
+  'Paiement',
+  'Fin'
+];
+
 const CAR_STATUSES = [
   'Disponible',
   'En Mission',
@@ -57,7 +65,9 @@ export default function Ressources() {
   const [viewMode, setViewMode] = useState('grouped'); // 'grouped' | 'table'
   const [search, setSearch] = useState('');
   const [filters, setFilters] = useState({
-      carStatus: []
+      carStatus: [],
+      nfStatus: [],
+      beneficiaire: ''
   });
 
   // Expanded Data for Note de Frais (Join with Mission)
@@ -72,16 +82,25 @@ export default function Ressources() {
     });
   }, []);
 
+  const uniqueBeneficiaires = useMemo(() => {
+      return [...new Set(expandedNF.map(nf => nf.beneficiaire))].sort();
+  }, [expandedNF]);
+
   // Filtered Data
   const filteredData = useMemo(() => {
     const term = search.toLowerCase();
 
     if (resourceType === 'nf') {
-      return expandedNF.filter(item =>
-        item.beneficiaire.toLowerCase().includes(term) ||
-        item.id.toLowerCase().includes(term) ||
-        item.missionTitle.toLowerCase().includes(term)
-      );
+      return expandedNF.filter(item => {
+        const matchesSearch = item.beneficiaire.toLowerCase().includes(term) ||
+                              item.id.toLowerCase().includes(term) ||
+                              item.missionTitle.toLowerCase().includes(term);
+
+        const matchesStatus = filters.nfStatus.length === 0 || filters.nfStatus.includes(item.statut);
+        const matchesBeneficiaire = !filters.beneficiaire || item.beneficiaire === filters.beneficiaire;
+
+        return matchesSearch && matchesStatus && matchesBeneficiaire;
+      });
     } else {
       return voitures.filter(item => {
         const matchesSearch = item.immatriculation.toLowerCase().includes(term) ||
@@ -117,6 +136,7 @@ export default function Ressources() {
   const handleSidebarClick = (type, group) => {
     setResourceType(type);
     setGroupBy(group);
+    setFilters({ carStatus: [], nfStatus: [], beneficiaire: '' });
   };
 
   const toggleCarStatusFilter = (status) => {
@@ -126,6 +146,20 @@ export default function Ressources() {
              ? prev.carStatus.filter(s => s !== status)
              : [...prev.carStatus, status]
       }));
+  };
+
+  const toggleNFStatusFilter = (status) => {
+      setFilters(prev => ({
+          ...prev,
+          nfStatus: prev.nfStatus.includes(status)
+             ? prev.nfStatus.filter(s => s !== status)
+             : [...prev.nfStatus, status]
+      }));
+  };
+
+  const handleReset = () => {
+      setFilters({ carStatus: [], nfStatus: [], beneficiaire: '' });
+      setSearch('');
   };
 
   return (
@@ -248,7 +282,7 @@ export default function Ressources() {
                </button>
             </div>
           </div>
-          <div className="flex items-center justify-between pb-1">
+          <div className="flex flex-wrap items-center gap-3 pb-1">
                {resourceType === 'voiture' ? (
                    <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
                        <span className="text-[10px] font-bold text-gray-400 uppercase mr-1">Statut:</span>
@@ -263,7 +297,37 @@ export default function Ressources() {
                        ))}
                    </div>
                ) : (
-                   <div></div>
+                   <div className="flex flex-wrap items-center gap-3 py-1">
+                       {/* NF Filters */}
+                       <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
+                           <span className="text-[10px] font-bold text-gray-400 uppercase mr-1">Statut:</span>
+                           {NF_STATUSES.map(status => (
+                               <FilterPill
+                                   key={status}
+                                   label={status}
+                                   active={filters.nfStatus.includes(status)}
+                                   onClick={() => toggleNFStatusFilter(status)}
+                                   colorClass="bg-blue-100 text-blue-700 border-blue-300"
+                               />
+                           ))}
+                       </div>
+
+                       <select
+                           className="text-xs font-medium bg-white border border-gray-200 rounded-md px-3 py-1.5 outline-none focus:border-blue-500 hover:border-gray-300"
+                           value={filters.beneficiaire}
+                           onChange={(e) => setFilters(prev => ({...prev, beneficiaire: e.target.value}))}
+                       >
+                            <option value="">Tous les Bénéficiaires</option>
+                            {uniqueBeneficiaires.map(b => <option key={b} value={b}>{b}</option>)}
+                       </select>
+                   </div>
+               )}
+
+               {/* Reset & Count */}
+               {(search || filters.carStatus.length > 0 || filters.nfStatus.length > 0 || filters.beneficiaire) && (
+                  <button onClick={handleReset} className="text-xs text-red-500 hover:underline font-medium ml-auto sm:ml-2">
+                      Réinitialiser
+                  </button>
                )}
 
                <span className="text-xs text-gray-400 font-medium whitespace-nowrap ml-auto">

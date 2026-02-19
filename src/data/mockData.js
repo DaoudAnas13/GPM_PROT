@@ -566,6 +566,30 @@ export const notesDeFrais = [
   { id: 'NF-2026-012', missionId: 'MSN-2026-002', beneficiaire: 'Mohamed Trabelsi', montant: 20.000,  date: '2026-02-20', statut: 'verification' },
 ];
 
+export const factures = [
+  { id: 'FAC-2026-001', client: 'Tunisie Telecom', montant: 15000.000, dateCreation: '2026-01-15', statut: 'paiement' },
+  { id: 'FAC-2026-002', client: 'Poulina Group Holding', montant: 8250.500, dateCreation: '2026-01-20', statut: 'verification' },
+  { id: 'FAC-2026-003', client: 'Délice Danone', montant: 12000.000, dateCreation: '2026-02-01', statut: 'creation' },
+  { id: 'FAC-2026-004', client: 'Monoprix Tunisie', montant: 4500.000, dateCreation: '2026-02-05', statut: 'décharge' },
+  { id: 'FAC-2026-005', client: 'Carthage Cement', montant: 22000.000, dateCreation: '2026-02-10', statut: 'fin' },
+  { id: 'FAC-2026-006', client: 'Société Tunisienne d’Électricité', montant: 9800.000, dateCreation: '2026-01-25', statut: 'verification' },
+  { id: 'FAC-2026-007', client: 'Tunisie Telecom', montant: 3500.000, dateCreation: '2026-02-18', statut: 'creation' },
+  { id: 'FAC-2026-008', client: 'Délice Danone', montant: 14500.000, dateCreation: '2026-01-10', statut: 'paiement' },
+  { id: 'FAC-2026-009', client: 'Poulina Group Holding', montant: 6700.000, dateCreation: '2026-02-15', statut: 'verification' },
+  { id: 'FAC-2026-010', client: 'Monoprix Tunisie', montant: 5000.000, dateCreation: '2026-01-05', statut: 'fin' },
+];
+
+export const devis = [
+  { id: 'DEV-2026-001', client: 'Tunisie Telecom', montant: 18000.000, dateCreation: '2026-02-01', statut: 'creation' },
+  { id: 'DEV-2026-002', client: 'Poulina Group Holding', montant: 9500.000, dateCreation: '2026-02-05', statut: 'execution des travaux' },
+  { id: 'DEV-2026-003', client: 'Délice Danone', montant: 13500.000, dateCreation: '2026-02-10', statut: 'fin' },
+  { id: 'DEV-2026-004', client: 'Monoprix Tunisie', montant: 5200.000, dateCreation: '2026-02-12', statut: 'creation' },
+  { id: 'DEV-2026-005', client: 'Carthage Cement', montant: 25000.000, dateCreation: '2026-02-15', statut: 'execution des travaux' },
+  { id: 'DEV-2026-006', client: 'Société Tunisienne d’Électricité', montant: 11000.000, dateCreation: '2026-02-18', statut: 'creation' },
+  { id: 'DEV-2026-007', client: 'Tunisie Telecom', montant: 4200.000, dateCreation: '2026-02-20', statut: 'creation' },
+  { id: 'DEV-2026-008', client: 'Délice Danone', montant: 16000.000, dateCreation: '2026-02-22', statut: 'execution des travaux' },
+];
+
 export const intervenants = [
   { id: 'INT-01', nom: 'Mehdi Belhaj',   role: 'Responsable',  avatar: 'MB', departement: 'Terrain'    },
   { id: 'INT-02', nom: 'Sarra Kamoun',   role: 'Membre',       avatar: 'SK', departement: 'Technique'  },
