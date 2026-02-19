@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard';
 import Missions from './pages/Missions';
 import Clients from './pages/Clients';
 import Projets from './pages/Projets';
+import Ressources from './pages/Ressources';
 import WorkOrder from './pages/WorkOrder';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/missions" element={<Missions />} />
           <Route path="/clients" element={<Clients />} />
           <Route path="/projets" element={<Projets />} />
+          <Route path="/ressources" element={<Ressources />} />
           <Route path="/mission/new" element={<WorkOrder />} />
           <Route path="/mission/:id" element={<WorkOrder />} />
         </Routes>

@@ -539,10 +539,31 @@ export const motifs = [
 ];
 
 export const voitures = [
-  { id: 'VOI-01', immatriculation: 'TN-2241-A', modele: 'Peugeot 308',  statut: 'Disponible'  },
-  { id: 'VOI-02', immatriculation: 'TN-0091-B', modele: 'Renault Clio', statut: 'Disponible'  },
-  { id: 'VOI-03', immatriculation: 'TN-5512-C', modele: 'Dacia Duster', statut: 'En Mission'  },
-  { id: 'VOI-04', immatriculation: 'TN-3302-D', modele: 'Toyota Hilux', statut: 'Disponible'  },
+  { id: 'VOI-01', immatriculation: 'TN-2241-A', modele: 'Peugeot 308',  statut: 'Disponible',  kilometrage: 125000, carburant: 'Diesel' },
+  { id: 'VOI-02', immatriculation: 'TN-0091-B', modele: 'Renault Clio', statut: 'Disponible',  kilometrage: 45000,  carburant: 'Essence' },
+  { id: 'VOI-03', immatriculation: 'TN-5512-C', modele: 'Dacia Duster', statut: 'En Mission',  kilometrage: 89000,  carburant: 'Diesel' },
+  { id: 'VOI-04', immatriculation: 'TN-3302-D', modele: 'Toyota Hilux', statut: 'Disponible',  kilometrage: 150000, carburant: 'Diesel' },
+  { id: 'VOI-05', immatriculation: 'TN-1122-E', modele: 'Fiat Fiorino', statut: 'Maintenance', kilometrage: 210000, carburant: 'Diesel' },
+  { id: 'VOI-06', immatriculation: 'TN-8877-F', modele: 'Citroen Berlingo', statut: 'En Mission', kilometrage: 67000, carburant: 'Diesel' },
+  { id: 'VOI-07', immatriculation: 'TN-4455-G', modele: 'Volkswagen Caddy', statut: 'Disponible', kilometrage: 32000, carburant: 'Diesel' },
+  { id: 'VOI-08', immatriculation: 'TN-9900-H', modele: 'Peugeot Partner', statut: 'En Mission', kilometrage: 115000, carburant: 'Diesel' },
+  { id: 'VOI-09', immatriculation: 'TN-6633-I', modele: 'Renault Kangoo', statut: 'Maintenance', kilometrage: 180000, carburant: 'Diesel' },
+  { id: 'VOI-10', immatriculation: 'TN-2211-J', modele: 'Isuzu D-Max',    statut: 'Disponible', kilometrage: 55000,  carburant: 'Diesel' },
+];
+
+export const notesDeFrais = [
+  { id: 'NF-2026-001', missionId: 'MSN-2026-001', beneficiaire: 'Ahmed Ben Salah', montant: 120.500, date: '2026-02-21', statut: 'creation' },
+  { id: 'NF-2026-002', missionId: 'MSN-2026-002', beneficiaire: 'Mohamed Trabelsi', montant: 85.000,  date: '2026-02-19', statut: 'verification' },
+  { id: 'NF-2026-003', missionId: 'MSN-2026-003', beneficiaire: 'Yassine Karray',   montant: 250.000, date: '2026-02-12', statut: 'validation direction technique' },
+  { id: 'NF-2026-004', missionId: 'MSN-2026-004', beneficiaire: 'Walid Gharbi',     montant: 45.000,  date: '2026-01-16', statut: 'paiement' },
+  { id: 'NF-2026-005', missionId: 'MSN-2026-001', beneficiaire: 'Ahmed Ben Salah', montant: 60.000,  date: '2026-02-22', statut: 'fin' },
+  { id: 'NF-2026-006', missionId: 'MSN-2026-006', beneficiaire: 'Ahmed Ben Salah', montant: 180.000, date: '2026-02-18', statut: 'validation direction technique' },
+  { id: 'NF-2026-007', missionId: 'MSN-2026-007', beneficiaire: 'Mohamed Trabelsi', montant: 95.500,  date: '2026-03-01', statut: 'creation' },
+  { id: 'NF-2026-008', missionId: 'MSN-2026-010', beneficiaire: 'Mohamed Trabelsi', montant: 300.000, date: '2026-03-08', statut: 'verification' },
+  { id: 'NF-2026-009', missionId: 'MSN-2026-011', beneficiaire: 'Walid Gharbi',     montant: 110.000, date: '2026-02-05', statut: 'paiement' },
+  { id: 'NF-2026-010', missionId: 'MSN-2026-012', beneficiaire: 'Yassine Karray',   montant: 500.000, date: '2026-01-12', statut: 'fin' },
+  { id: 'NF-2026-011', missionId: 'MSN-2026-005', beneficiaire: 'Houssem Jaziri',   montant: 75.000,  date: '2026-03-03', statut: 'creation' },
+  { id: 'NF-2026-012', missionId: 'MSN-2026-002', beneficiaire: 'Mohamed Trabelsi', montant: 20.000,  date: '2026-02-20', statut: 'verification' },
 ];
 
 export const intervenants = [

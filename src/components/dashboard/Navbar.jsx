@@ -11,7 +11,7 @@ export default function Navbar() {
     { name: 'Missions', path: '/missions' },
     { name: 'Clients', path: '/clients' },
     { name: 'Projets', path: '/projets' },
-    { name: 'Statistiques', path: '/stats' },
+    { name: 'Ressources', path: '/ressources' },
   ];
 
   const isActive = (path) => {
