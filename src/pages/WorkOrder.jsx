@@ -89,17 +89,18 @@ export default function WorkOrder() {
 
         {/* Top Info Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <GlobalInfoCard
+                formData={formData}
+                readOnly={topSectionsReadOnly}
+                onUpdate={updateField}
+                onUpdateFields={updateFields}
+            />
           <ClientInfoCard
             formData={formData}
             readOnly={topSectionsReadOnly}
             onUpdate={updateField}
           />
-          <GlobalInfoCard
-            formData={formData}
-            readOnly={topSectionsReadOnly}
-            onUpdate={updateField}
-            onUpdateFields={updateFields}
-          />
+
         </div>
 
         {/* Row 2: Intervenants */}

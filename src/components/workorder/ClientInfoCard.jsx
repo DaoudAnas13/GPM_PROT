@@ -53,26 +53,21 @@ export default function ClientInfoCard({ formData, readOnly, onUpdate }) {
               {field.label}
               {!readOnly && <span className="text-red-500 ml-0.5">*</span>}
             </label>
-            {readOnly ? (
-              <p className="text-sm text-gray-900 font-medium py-2 border-b border-gray-100">
-                {formData[field.key] || '-'}
-              </p>
-            ) : (
-              <div className={`relative rounded-lg ${formData.autoFilled ? 'border-l-[3px] border-l-[#10B981]' : ''}`}>
-                <input
-                  type="text"
-                  value={formData[field.key] || ''}
-                  onChange={(e) => onUpdate(field.key, e.target.value)}
-                  className={`
-                    w-full px-3 py-2.5 text-sm border border-[#E2E8F0] rounded-lg
-                    focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]
-                    transition-colors
-                    ${formData.autoFilled ? 'autofill-flash' : ''}
-                  `}
-                  placeholder={`Saisir ${field.label.toLowerCase()}...`}
-                />
-              </div>
-            )}
+            <div className={`relative rounded-lg ${formData.autoFilled ? 'border-l-[3px] border-l-[#10B981]' : ''}`}>
+              <input
+                type="text"
+                value={formData[field.key] || ''}
+                readOnly={true}
+                className={`
+                  w-full px-3 py-2.5 text-sm border border-[#E2E8F0] rounded-lg
+                  bg-gray-50 text-gray-700 cursor-not-allowed
+                  focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]
+                  transition-colors
+                  ${formData.autoFilled ? 'autofill-flash' : ''}
+                `}
+                placeholder={readOnly ? '-' : 'Sélectionner un client...'}
+              />
+            </div>
           </div>
         ))}
       </div>

@@ -394,12 +394,84 @@ export const missions = [
 ];
 
 export const clients = [
-  { id: 'CLT-01', raisonSociale: 'Société Tunisienne d’Électricité (STEG)', ville: 'Tunis', secteur: 'Énergie' },
-  { id: 'CLT-02', raisonSociale: 'Tunisie Telecom', ville: 'Tunis', secteur: 'Télécom' },
-  { id: 'CLT-03', raisonSociale: 'Poulina Group Holding', ville: 'Ben Arous', secteur: 'Industrie' },
-  { id: 'CLT-04', raisonSociale: 'Délice Danone', ville: 'Tunis', secteur: 'Agroalimentaire' },
-  { id: 'CLT-05', raisonSociale: 'Monoprix Tunisie', ville: 'Mégrine', secteur: 'Distribution' },
-  { id: 'CLT-06', raisonSociale: 'Carthage Cement', ville: 'Tunis', secteur: 'Construction' },
+  {
+    id: 'CLT-01',
+    raisonSociale: 'Société Tunisienne d’Électricité (STEG)',
+    ville: 'Tunis',
+    secteur: 'Énergie',
+    direction: 'Direction Technique Centrale',
+    demandeur: 'Mohamed Ali Ben Ammar',
+    responsableSite: 'Khaled Jlassi',
+    matriculeFiscal: '1234567/A/M/000',
+    email: 'contact.technique@steg.com.tn',
+    telephone: '+216 71 123 456',
+    adresse: '38 Rue Kemal Ataturk, Tunis 1002'
+  },
+  {
+    id: 'CLT-02',
+    raisonSociale: 'Tunisie Telecom',
+    ville: 'Tunis',
+    secteur: 'Télécom',
+    direction: 'Direction Réseaux & Systèmes',
+    demandeur: 'Sami Tounsi',
+    responsableSite: 'Amel Karoui',
+    matriculeFiscal: '9876543/B/P/000',
+    email: 'support.infra@tunisietelecom.tn',
+    telephone: '+216 71 888 999',
+    adresse: 'Jardins du Lac 2, Tunis 1053'
+  },
+  {
+    id: 'CLT-03',
+    raisonSociale: 'Poulina Group Holding',
+    ville: 'Ben Arous',
+    secteur: 'Industrie',
+    direction: 'Direction Maintenance Groupe',
+    demandeur: 'Férid Abbas',
+    responsableSite: 'Nabil Maaloul',
+    matriculeFiscal: '4567890/C/N/000',
+    email: 'maintenance@poulina.com.tn',
+    telephone: '+216 79 111 222',
+    adresse: 'GP1 Km 12, Ezzahra, Ben Arous'
+  },
+  {
+    id: 'CLT-04',
+    raisonSociale: 'Délice Danone',
+    ville: 'Tunis',
+    secteur: 'Agroalimentaire',
+    direction: 'Direction Qualité & Sécurité',
+    demandeur: 'Leila Ben Youssef',
+    responsableSite: 'Hichem Driss',
+    matriculeFiscal: '5678901/D/Q/000',
+    email: 'qualite@delice.tn',
+    telephone: '+216 71 444 555',
+    adresse: 'Zone Industrielle Charguia 1, Tunis'
+  },
+  {
+    id: 'CLT-05',
+    raisonSociale: 'Monoprix Tunisie',
+    ville: 'Mégrine',
+    secteur: 'Distribution',
+    direction: 'Direction Logistique',
+    demandeur: 'Omar Khemiri',
+    responsableSite: 'Salma Hachani',
+    matriculeFiscal: '3456789/E/R/000',
+    email: 'logistique@monoprix.tn',
+    telephone: '+216 71 333 444',
+    adresse: 'Rue 8603, Zone Industrielle, Mégrine'
+  },
+  {
+    id: 'CLT-06',
+    raisonSociale: 'Carthage Cement',
+    ville: 'Tunis',
+    secteur: 'Construction',
+    direction: 'Direction Production',
+    demandeur: 'Moncef Cheikhrouhou',
+    responsableSite: 'Ridha Zaghouani',
+    matriculeFiscal: '2345678/F/S/000',
+    email: 'prod@carthagecement.com',
+    telephone: '+216 71 222 333',
+    adresse: 'Immeuble Carthage, Les Berges du Lac, Tunis'
+  },
 ];
 
 export const cities = [
